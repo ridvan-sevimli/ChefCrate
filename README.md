@@ -15,7 +15,7 @@ Bevor ein Pull-Request vom Entwickler erstellt wird, müssen die folgenden Bedin
 Nachdem der Pull-Request approved wurde, wird der Feature-Branch vom Ersteller
 selbstständig in den dev-branch gemerged. Der Feature-Branch oder der Doc-Branch wird im Anschluss gelöscht.
 
-![Branching Modell](doc/branching_modell.png)
+![Branching Modell](app/doc/branching_modell.png)
 
 ## Arbeiten mit Git
 1.) Kontrolle ob man die Aktuellste Version hat `Git update` oder `Fetch`
