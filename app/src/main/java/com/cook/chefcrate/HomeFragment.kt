@@ -59,8 +59,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        var mainCategoryAdapter = MainCategoryAdapter(requireContext())
-        var subCategoryAdapter = SubCategoryAdapter(requireContext())
+        var mainCategoryAdapter = MainCategoryAdapter()
+        var subCategoryAdapter = SubCategoryAdapter()
 
         arrMainCategory.add( Recipes(1, dishName = "Beef"))
         arrMainCategory.add( Recipes(2, dishName = "Chicken"))
