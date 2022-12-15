@@ -7,36 +7,38 @@
     android:background="@color/black"
     tools:context=".SplashFragment">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/splash"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/splash" />
+
+    <TextView
+        android:layout_width="385dp"
+        android:layout_height="93dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="629dp"
+        android:fontFamily="@font/alex_brush"
+        android:gravity="center"
+        android:text="Chef Crate"
+        android:textColor="@color/white"
+        android:textSize="70dp" />
 
     <Button
         android:id="@+id/btnGetStarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
         android:textColor="@color/white"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:visibility="invisible"
+        android:background="@drawable/btn_bg"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="50dp"
         android:layout_marginStart="20dp"
         android:text="Get Started" />
-
-        <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="50dp"
-            android:layout_marginStart="60dp"
-            android:outlineAmbientShadowColor="@color/white"
-            android:id="@+id/loader" />
 
 </RelativeLayout>

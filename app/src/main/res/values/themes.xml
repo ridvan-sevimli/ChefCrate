@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.ChefCrate" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,6 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ThemeOverlay.Search" parent="Theme.ChefCrate">
+        <!-- Primary branc color. -->
+        <item name="android:editTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/hintTextColor</item>
     </style>
 
     <style name="Theme.ChefCrate.NoActionBar">
