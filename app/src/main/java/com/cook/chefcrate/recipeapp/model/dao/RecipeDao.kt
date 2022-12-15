@@ -14,5 +14,10 @@ interface RecipeDao {
     fun allRecipes(): List<Recipes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRecipe(recipies: Recipes)
+    fun insertRecipe(recipes: Recipes)
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg recipes: Recipes)
+
 }

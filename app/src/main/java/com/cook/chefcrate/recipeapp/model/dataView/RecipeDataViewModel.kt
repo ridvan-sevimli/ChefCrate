@@ -24,10 +24,13 @@ class RecipeDataViewModel : ViewModel() {
     }
 
     suspend fun insertRecipe(){
-        db?.recipeDao()?.insertRecipe(
-            Recipes(
-                1
-            )
+        db?.recipeDao()?.insertAll(
+
+            // temporary data
+            Recipes(1, dishName = "Beef"),
+            Recipes(2, dishName = "Chicken"),
+            Recipes(3, dishName = "Dessert"),
+            Recipes(4,dishName="Lamb")
         )
     }
     suspend fun readRecipes(){
