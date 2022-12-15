@@ -1,4 +1,4 @@
-package com.cook.chefcrate.recipeapp.entities
+package com.cook.chefcrate.recipeapp.model.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
