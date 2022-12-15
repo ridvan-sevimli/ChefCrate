@@ -1,15 +1,17 @@
-package com.cook.chefcrate.recipeapp.dao
+package com.cook.chefcrate.recipeapp.model.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.OnConflictStrategy
-import com.cook.chefcrate.recipeapp.entities.Recipes
+import com.cook.chefcrate.recipeapp.model.entities.Recipes
 
+
+//Dao: Database Access Object
 @Dao
 interface RecipeDao {
-    @get:Query("SELECT * FROM recipes ORDER BY id DESC")
-    val allRecipies: List<Recipes>
+    @Query("SELECT * FROM recipes ORDER BY id DESC")
+    fun allRecipes(): List<Recipes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRecipe(recipies: Recipes)
