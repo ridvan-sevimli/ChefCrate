@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.cook.chefcrate.databinding.SplaschScreenBinding
 
 
@@ -33,9 +34,9 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // binding.buttonFirst.setOnClickListener {
-           // findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-       // }
+        binding.btnGetStarted.setOnClickListener {
+         findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
+       }
     }
 
     override fun onDestroyView() {
@@ -53,3 +54,4 @@ class SplashFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 }
+
