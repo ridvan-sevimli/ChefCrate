@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import com.cook.chefcrate.databinding.FragmentHomeBinding
 import com.cook.chefcrate.recipeapp.model.adapter.MainCategoryAdapter
@@ -34,7 +38,6 @@ class HomeFragment : Fragment() {
 
     var arrMainCategory = ArrayList<Recipes>()
     var arrSubCategory = ArrayList<Recipes>()
-
 
 
     override fun onCreateView(
@@ -64,23 +67,10 @@ class HomeFragment : Fragment() {
         }
 
         val inputStream = requireContext().resources.openRawResource(R.raw.categories)
-        val categories = Klaxon().parse<Categories>(inputStream)
+        //val categories = Klaxon().parse<Categories>(inputStream)
 
         var mainCategoryAdapter = MainCategoryAdapter()
         var subCategoryAdapter = SubCategoryAdapter()
-
-
-        for(category in categories?.categories!!){
-            arrMainCategory.add(Recipes(category.idCategory.toInt(), category.strCategory,category.strCategoryThumb))
-        }
-
-//        arrMainCategory.add( Recipes(2, dishName = "Chicken"))
-//        arrMainCategory.add( Recipes(3, dishName = "Dessert"))
-//        arrMainCategory.add( Recipes(4,dishName="Lamb"))
-//        arrMainCategory.add( Recipes(5, dishName = "Beef"))
-//        arrMainCategory.add( Recipes(6, dishName = "Chicken"))
-//        arrMainCategory.add( Recipes(7, dishName = "Dessert"))
-//        arrMainCategory.add( Recipes(8,dishName="Lamb"))
 
 
         arrSubCategory.add( Recipes(1, dishName = "Beef and mustard pie","https://www.themealdb.com/images/category/chicken.png"))
@@ -92,14 +82,35 @@ class HomeFragment : Fragment() {
         arrSubCategory.add( Recipes(7, dishName = "Dessert","https://www.themealdb.com/images/category/chicken.png"))
         arrSubCategory.add( Recipes(8,dishName="Lamb","https://www.themealdb.com/images/category/chicken.png"))
 
-        mainCategoryAdapter.setData(arrMainCategory)
-        subCategoryAdapter.setData(arrSubCategory)
+
 
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        binding.rvMainCategory.adapter = mainCategoryAdapter
+
 
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        binding.rvSubCategory.adapter = subCategoryAdapter
+
+
+        var text :String
+        val url = "https://imdb-api.com/en/API/ComingSoon/k_dpwxdc3v"
+        var categories :Categories? = null
+        val requestQueue = Volley.newRequestQueue(requireContext())
+        val request = StringRequest(Request.Method.GET, "https://www.themealdb.com/api/json/v1/1/categories.php", Response.Listener<String> { response ->
+            categories = Klaxon().parse<Categories>(response)
+
+            for(category in categories?.categories!!){
+                arrMainCategory.add(Recipes(category.idCategory.toInt(), category.strCategory,category.strCategoryThumb))
+            }
+            mainCategoryAdapter.setData(arrMainCategory)
+            subCategoryAdapter.setData(arrSubCategory)
+
+            binding.rvSubCategory.adapter = subCategoryAdapter
+            binding.rvMainCategory.adapter = mainCategoryAdapter
+        },
+            Response.ErrorListener {
+
+            })
+
+        requestQueue.add(request)
 
 //        model.recipes.observe(viewLifecycleOwner,
 //            // note that the observer sends the new value as parameter
