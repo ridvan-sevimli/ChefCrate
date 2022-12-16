@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cook.chefcrate.databinding.ItemRvMainCategoryBinding
 import com.cook.chefcrate.recipeapp.model.entities.Recipes
+import com.squareup.picasso.Picasso
 
 class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHolder>(){
 
@@ -25,6 +26,8 @@ class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.RecipeVie
         with(holder){
             with(arrMainCategory[position]) {
                 binding.tvDishName.text = arrMainCategory[position].dishName
+                Picasso.get()
+                    .load(arrMainCategory[position].dishImgPath).into(binding.imgDish)
             }
         }
     }

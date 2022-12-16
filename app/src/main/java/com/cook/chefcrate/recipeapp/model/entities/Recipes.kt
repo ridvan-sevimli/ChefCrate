@@ -1,5 +1,6 @@
 package com.cook.chefcrate.recipeapp.model.entities
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,6 +12,9 @@ data class Recipes (
     var id: Int,
 
     @ColumnInfo(name= "dishName")
-    var dishName : String?
+    var dishName : String?,
+
+    @ColumnInfo(name= "dishImgPath")
+    var dishImgPath : String?
 
     ): Serializable

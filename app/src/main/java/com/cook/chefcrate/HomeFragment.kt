@@ -1,5 +1,6 @@
 package com.cook.chefcrate
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.beust.klaxon.Klaxon
 import com.cook.chefcrate.databinding.FragmentHomeBinding
 import com.cook.chefcrate.recipeapp.model.adapter.MainCategoryAdapter
 import com.cook.chefcrate.recipeapp.model.adapter.SubCategoryAdapter
 import com.cook.chefcrate.recipeapp.model.dataView.RecipeDataViewModel
+import com.cook.chefcrate.recipeapp.model.entities.Categories
 import com.cook.chefcrate.recipeapp.model.entities.Recipes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -59,27 +63,34 @@ class HomeFragment : Fragment() {
             }
         }
 
+        val inputStream = requireContext().resources.openRawResource(R.raw.categories)
+        val categories = Klaxon().parse<Categories>(inputStream)
+
         var mainCategoryAdapter = MainCategoryAdapter()
         var subCategoryAdapter = SubCategoryAdapter()
 
-        arrMainCategory.add( Recipes(1, dishName = "Beef"))
-        arrMainCategory.add( Recipes(2, dishName = "Chicken"))
-        arrMainCategory.add( Recipes(3, dishName = "Dessert"))
-        arrMainCategory.add( Recipes(4,dishName="Lamb"))
-        arrMainCategory.add( Recipes(5, dishName = "Beef"))
-        arrMainCategory.add( Recipes(6, dishName = "Chicken"))
-        arrMainCategory.add( Recipes(7, dishName = "Dessert"))
-        arrMainCategory.add( Recipes(8,dishName="Lamb"))
+
+        for(category in categories?.categories!!){
+            arrMainCategory.add(Recipes(category.idCategory.toInt(), category.strCategory,category.strCategoryThumb))
+        }
+
+//        arrMainCategory.add( Recipes(2, dishName = "Chicken"))
+//        arrMainCategory.add( Recipes(3, dishName = "Dessert"))
+//        arrMainCategory.add( Recipes(4,dishName="Lamb"))
+//        arrMainCategory.add( Recipes(5, dishName = "Beef"))
+//        arrMainCategory.add( Recipes(6, dishName = "Chicken"))
+//        arrMainCategory.add( Recipes(7, dishName = "Dessert"))
+//        arrMainCategory.add( Recipes(8,dishName="Lamb"))
 
 
-        arrSubCategory.add( Recipes(1, dishName = "Beef and mustard pie"))
-        arrSubCategory.add( Recipes(2, dishName = "Chicken and mushroom hotpot"))
-        arrSubCategory.add( Recipes(3, dishName = "Banana pancakes"))
-        arrSubCategory.add( Recipes(4,dishName="kapsalon"))
-        arrSubCategory.add( Recipes(5, dishName = "Beef and mustard pie"))
-        arrSubCategory.add( Recipes(6, dishName = "Chicken and mushroom hotpot"))
-        arrSubCategory.add( Recipes(7, dishName = "Dessert"))
-        arrSubCategory.add( Recipes(8,dishName="Lamb"))
+        arrSubCategory.add( Recipes(1, dishName = "Beef and mustard pie","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(2, dishName = "Chicken and mushroom hotpot","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(3, dishName = "Banana pancakes","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(4,dishName="kapsalon","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(5, dishName = "Beef and mustard pie","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(6, dishName = "Chicken and mushroom hotpot","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(7, dishName = "Dessert","https://www.themealdb.com/images/category/chicken.png"))
+        arrSubCategory.add( Recipes(8,dishName="Lamb","https://www.themealdb.com/images/category/chicken.png"))
 
         mainCategoryAdapter.setData(arrMainCategory)
         subCategoryAdapter.setData(arrSubCategory)
