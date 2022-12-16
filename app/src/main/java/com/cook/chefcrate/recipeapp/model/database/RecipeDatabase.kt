@@ -5,9 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.cook.chefcrate.recipeapp.model.dao.RecipeDao
+import com.cook.chefcrate.recipeapp.model.entities.Category
+import com.cook.chefcrate.recipeapp.model.entities.CategoryItems
 import com.cook.chefcrate.recipeapp.model.entities.Recipes
+import com.cook.chefcrate.recipeapp.model.entities.converter.CategoryListConverter
 
-@Database(entities = [Recipes::class],version = 1,exportSchema = false)
+@Database(entities = [Recipes::class, Category::class,CategoryItems::class, CategoryListConverter::class],version = 1,exportSchema = false)
 abstract class RecipeDatabase : RoomDatabase(){
 
     companion object{
